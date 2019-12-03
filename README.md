@@ -22,7 +22,10 @@ R (≥3.5.0), [biotools](https://cran.r-project.org/web/packages/biotools/index.
 2. Download the [Data Analysis Tools]() source code and place it in a directory of your choice. Examples in this manual and the [vignette]() assume the .R file is located at **D:/Data Analysis Tools**.
 3. If you wish, you can also download various [example data files]() used in the [vignette]().
 4. Create a new script in RStudio using **File -> New File -> R Script**.
-5. Source Data Analysis Tools using the command: ```r source("D:/Data Analysis Tools/Data_Analysis_Tools_v01.R")```. This file may also be opened in RStudio directly to alter the source code, if required.
+5. Source Data Analysis Tools using the command: ```r 
+source("D:/Data Analysis Tools/Data_Analysis_Tools_v01.R")
+```. 
+This file may also be opened in RStudio directly to alter the source code, if required.
 
 # Functions
 ### The `Extended_PCA` function
