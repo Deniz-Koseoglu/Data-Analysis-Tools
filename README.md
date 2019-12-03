@@ -41,7 +41,25 @@ Extended_PCA <- function(data, vars, obs="default", plot_grphcs=list(c("arrow", 
 #### Arguments
 | Argument | Description |
 | ------------- |-------------|
-|**arg**|desc.|
+|**data**|desc.|
+|**vars**||
+|**obs**||
+|**plot_grphcs**||
+|**plot_colvar**||
+|**plot_cols**||
+|**rank_vars**||
+|**add_opts**||
+|**ind_groups**||
+|**clust_k**||
+|**clust_dist**||
+|**clust_which**||
+|**ellipses**||
+|**pc_keep**||
+|**export_path**||
+|**export_res**||
+|**height**||
+|**width**||
+|**point_size**||
 
 #### Details
 Please refer to the [Data Analysis Tools vignette]() for example usage and output of this and other functions.
@@ -64,7 +82,38 @@ Extended_HC <- function(data, cluster_by="observations", var_subset, var_labels=
 #### Arguments
 | Argument | Description |
 | ------------- |-------------|
-|**arg**|desc.|
+|**data**|desc.|
+|**cluster_by**||
+|**var_subset**||
+|**var_labels**||
+|**dist_measure**||
+|**agglomeration_methods**||
+|**agglomeration_labels**||
+|**preproc_method**||
+|**cvi_range**||
+|**cluster_legend**||
+|**cluster_labels**||
+|**k**||
+|**cor_method**||
+|**horizont**||
+|**dataset_label**||
+|**cluster_colours**||
+|**gg_lab_size**||
+|**base_lab**||
+|**gg_lwd**||
+|**base_lwd**||
+|**draw_rect**||
+|**coef_method**||
+|**FM_test**||
+|**FM_lim**||
+|**export_plots**||
+|**width**||
+|**height**||
+|**point_size**||
+|**dpi**||
+|**export_results**||
+|**export_path**||
+|**dend_mar**||
 
 #### Details
 Please refer to the [Data Analysis Tools vignette]() for example usage and output of this and other functions.
@@ -81,7 +130,24 @@ colours, facet_by="linkage method", cluster_type="arbitrary", k, export_plots="p
 #### Arguments
 | Argument | Description |
 | ------------- |-------------|
-|**arg**|desc.|
+|**data**|desc.|
+|**cluster_data**||
+|**cluster_labels**||
+|**var_subset**||
+|**var_labels**||
+|**x_var**||
+|**x_lab**||
+|**colours**||
+|**facet_by**||
+|**cluster_type**||
+|**k**||
+|**export_plots**||
+|**export_results**||
+|**export_path**||
+|**height**||
+|**width**||
+|**point_size**||
+|**dpi**||
 
 #### Details
 Please refer to the [Data Analysis Tools vignette]() for example usage and output of this and other functions.
@@ -102,7 +168,38 @@ point_size=10, dpi=500, export_results=TRUE, export_path=getwd(), dtw_distance="
 #### Arguments
 | Argument | Description |
 | ------------- |-------------|
-|**arg**|desc.|
+|**query_data**|desc.|
+|**ref_data**||
+|**query_title**||
+|**ref_title**||
+|**query_subset**||
+|**ref_subset**||
+|**z_norm**||
+|**reinterp**||
+|**x_var**||
+|**step_pattern**||
+|**window_type**||
+|**window_size**||
+|**MVM_elasticity**||
+|**RJ_step_settings**||
+|**open_begin**||
+|**open_end**||
+|**x_align**||
+|**y_offset**||
+|**x_label**||
+|**sample_freq**||
+|**match_vis**||
+|**grang_order**||
+|**x_rounding_order**||
+|**y_rounding_order**||
+|**export_plots**||
+|**width**||
+|**height**||
+|**point_size**||
+|**dpi**||
+|**export_results**||
+|**export_path**||
+|**dtw_distance**||
 
 #### Details
 Please refer to the [Data Analysis Tools vignette]() for example usage and output of this and other functions.
