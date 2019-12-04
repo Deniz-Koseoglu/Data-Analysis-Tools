@@ -104,8 +104,8 @@ Extended_HC <- function(data, cluster_by="observations", var_subset, var_labels=
 |**gg_lwd**||
 |**base_lwd**||
 |**draw_rect**|A `TRUE/FALSE` logical. Should dashed rectangles be drawn around identified clusters within dendrograms?|
-|**FM_test**||
-|**FM_lim**||
+|**FM_test**|`NULL` by default. Otherwise, a column name containing cluster/class memberships for observations **previously** specified by the user. These are used to carry out Fowlkes-Mallows testing of said membeships against those determined via specified `agglomeration_methods`. Results showing the performance of each linkage method are subsequently visualised in a graph. Testing is only carried out when `cluster_by = "observations"`.|
+|**FM_lim**|A numeric vector of length 2 and values between 0 and 1. Determines the axis limits for the Fowlkes-Mallows testing visualisation.|
 |**export_plots**||
 |**width**||
 |**height**||
