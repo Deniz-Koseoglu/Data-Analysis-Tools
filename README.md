@@ -41,30 +41,30 @@ Extended_PCA <- function(data, vars, obs="default", plot_grphcs=list(c("arrow", 
 #### Arguments
 | Argument | Description |
 | ------------- |-------------|
-|**data**|desc.|
-|**vars**||
-|**obs**||
-|**plot_grphcs**||
-|**plot_colvar**||
-|**plot_cols**||
-|**rank_vars**||
+|**data**|Character filepath to a .CSV file, or the name of an R `data.frame` or `matrix` containing input data.|
+|**vars**|A character vector of `data` column names to use as *primary variables* for PCA. If a character `list` of length 2 is provided, the **first** and **second** elements denote *primary* and *secondary/supplementary* variables, respectively.|
+|**obs**|The `"default"` value uses all observations/rows for analysis. If a numeric vector of row numbers is provided, these are treated as *primary observations*; *secondary/supplementary observations* can be specified as the **second element** of a numeric list of length 2.|
+|**plot_grphcs**|A character vector list of length 2, denoting the plotting geometry of variables and observations, respectively. Possible character values include: `"points"` (data markers), `"arrows"` (arrows from the origin), `"text"` (data labels), or any combination of these. By default, arrows and labels are plotted for variables, while only points are shown for observations.|
+|**plot_colvar**|How to colour variables in PCA plots? Values of `"contrib"` and `"cos2"` colour variable PC loadings based on their contribution and squared cosine values, respectively. A single colour for variables can also be specified, e.g. `"red"` (default), but **note** that the PCA biplot containing both variables and observations will not be produced in this case.|
+|**plot_cols**|A value or vector list of length 2 specifying variable and observation colours to use, respectively.|
+|**rank_vars**|`TRUE/FALSE` logical. Should the correlation circle for variables be derived from their ranks? Essentially, when `TRUE`, Spearman rather than the Pearson correlation is performed on `vars`.|
 |**add_opts**||
-|**ind_groups**||
-|**clust_k**||
-|**clust_dist**||
-|**clust_which**||
-|**ellipses**||
-|**pc_keep**||
-|**export_path**||
-|**export_res**||
-|**height**||
-|**width**||
-|**point_size**||
+|**ind_groups**|A list specifying the type and settings of clustering method applied to variable and/or observation PC coordinates. The **first element** denotes the clustering method and is one of: `"HC"` (Agglomerative Hierarchical Clustering, AHC; default), `"dbscan"` (DBSCAN algorithm), `"fcm"` (fuzzy c-means). The **second element** is either the linkage method when AHC is used (one of: `"single"`, `"average"`, `"complete"` (default), `"ward.D"`, `ward.D2`, `"mcquitty"`), or a numberic value for epsilon neighbourhood size (EPS) when using DBSCAN. The **third element** is only used for DBSCAN and is an integer specifying the minimum number of nearest neighbours each identified cluster should have.|
+|**clust_which**|Any of: `"var"` and/or `"ind"`. Specifies whether variables and/or observations should be clustered, respectively.|
+|**clust_k**|Either a numeric value(s) specifying the number of clusters to separate variables and/or observations into (as specified in `clust_which`), or the value `"auto"`, which attempts to determine an optimal cluster number(s) automatically. If a vector of length 2 is provided, the **first** and **second** element are used for clustering variables and observations, respectively. Alternatively, if a single value is provided, it is either propagated to both variables and observations.|
+|**clust_dist**|A character value of the distance measure to use. Defaults to `"euclidean"`. See `?fviz_dist` (`method` argument) for available values.|
+|**ellipses**|`TRUE/FALSE` logical. Should centroid ellipses be drawn around clustered observations?|
+|**pc_keep**|A numeric value specifying the number of the PCs to keep (5 by default).|
+|**export_path**|Character path to the directory where results (including plots) should be exported. Defaults to the working directory.|
+|**height**|The height of exported .PDF graphics (10 by default).|
+|**width**|The width of exported .PDF graphics (10 by default).|
+|**point_size**|A numeric value of point size to use in exported .PDF graphics (12 by default).|
 
 #### Details
 Please refer to the [Data Analysis Tools vignette]() for example usage and output of this and other functions.
 
 #### Values
+
 <br></br>
 ### The `Extended_HC` function
 #### Usage
@@ -82,43 +82,44 @@ Extended_HC <- function(data, cluster_by="observations", var_subset, var_labels=
 #### Arguments
 | Argument | Description |
 | ------------- |-------------|
-|**data**|desc.|
-|**cluster_by**||
-|**var_subset**||
-|**var_labels**||
-|**dist_measure**||
-|**agglomeration_methods**||
-|**agglomeration_labels**||
-|**preproc_method**||
-|**cvi_range**||
+|**data**|The name of an R `data.frame` or `matrix` containing input data.|
+|**cluster_by**|One of `"variables"` or `"observations"`. Denotes whether `data` should be clustered by columns or rows, respectively.|
+|**var_subset**|A character vector of column names from `data` to use.|
+|**var_labels**|An optional custom vector of labels for variables specified in `var_subset`.|
+|**dist_measure**|The distance measure to use. Defaults to `"euclidean"`. Available options are outlined in `?proxy::dist` and `?tsclust`.|
+|**agglomeration_methods**|Character value/vector of linkage methods to use. Any of: `"single"`, `"average"`, `"complete"`, `"ward.D"`, `"ward.D2"`, `"mcquitty"`. All linkage methods are used by default.|
+|**agglomeration_labels**|Character vector/value of plot labels for linkage methods specified in `agglomeration_methods`.|
+|**preproc_method**|Character. The type of pre-processing applied to `data`. Currently supported values are either `NULL` or `"zscore"`.|
+|**cvi_range**|A numeric vector of length 2, where the **first** and **second** elements represent the minimum and maximum number of clusters to derive Cluster Validity Indices for.|
 |**cluster_legend**||
 |**cluster_labels**||
-|**k**||
+|**k**|The number of clusters to split dendrograms into (3 by default).|
 |**cor_method**|A character value giving the method to use when deriving a correlation matrix for comparison of different AHC linkage types (as determined by `agglomeration_methods`). One of: `"cophenetic"` (default), `"baker"`, `"common_nodes"`, or `"FM_index"`.|
 |**coef_method**|The type of correlation coefficient to derive for `cor_method`. One of: `"spearman"` (default), `"pearson"`, or `"kendall"`.|
-|**horizont**||
-|**dataset_label**||
-|**cluster_colours**||
-|**gg_lab_size**||
-|**base_lab**||
-|**gg_lwd**||
-|**base_lwd**||
+|**horizont**|`TRUE/FALSE` logical. Should dendrograms be oriented horizontally?|
+|**dataset_label**|A character value containing an optional `data` label/title.|
+|**cluster_colours**|A numeric or character vector of colours to use for clusters.|
+|**gg_lab_size**|Numeric `ggplot2` label text size (0.9 by default).|
+|**base_lab**|Numeric R base graphics label text size (0.8 by default).|
+|**gg_lwd**|Numeric `ggplot2` line width (0.8 by default).|
+|**base_lwd**|Numeric R base graphics line width (1.2 by default).|
 |**draw_rect**|A `TRUE/FALSE` logical. Should dashed rectangles be drawn around identified clusters within dendrograms?|
 |**FM_test**|`NULL` by default. Otherwise, a column name containing cluster/class memberships for observations **previously** specified by the user. These are used to carry out Fowlkes-Mallows testing of said membeships against those determined via specified `agglomeration_methods`. Results showing the performance of each linkage method are subsequently visualised in a graph. Testing is only carried out when `cluster_by = "observations"`.|
 |**FM_lim**|A numeric vector of length 2 and values between 0 and 1. Determines the axis limits for the Fowlkes-Mallows testing visualisation.|
-|**export_plots**||
-|**width**||
-|**height**||
-|**point_size**||
-|**dpi**||
-|**export_results**||
-|**export_path**||
+|**export_plots**|One of: `"none"`, `"png"`, or `"pdf"` (default). Specifies whether plots are exported, and the filetype.|
+|**width**|The width of exported .PDF/.PNG graphics (10 by default).|
+|**height**|The height of exported .PDF/.PNG graphics (10 by default).|
+|**point_size**|The point size of exported .PDF/.PNG graphics (10 by default).|
+|**dpi**|The resolution of exported .PNG plots (when `export_plots = "png"`), in Dots Per Inch (500 by default).|
+|**export_results**|`TRUE/FALSE` logical. Should results be exported as a .CSV file?|
+|**export_path**|Character path to the directory where results (including plots) should be exported. Defaults to the working directory.|
 |**dend_mar**|A numeric vector of length 2 providing the bottom (**first element**) and right (**second element**) margins for dendrograms drawn using base R graphics (rather than `ggplot2`).|
 
 #### Details
 Please refer to the [Data Analysis Tools vignette]() for example usage and output of this and other functions.
 
 #### Values
+
 <br></br>
 ### The `Overlay_Clusters` function
 #### Usage
@@ -139,20 +140,21 @@ colours, facet_by="linkage method", cluster_type="arbitrary", k, export_plots="p
 |**x_lab**||
 |**colours**||
 |**facet_by**||
-|**cluster_type**||
-|**k**||
-|**export_plots**||
-|**export_results**||
-|**export_path**||
-|**height**||
-|**width**||
-|**point_size**||
-|**dpi**||
+|**cluster_type**|One of: `"HC"` or `"arbitrary"`, depending on whether the class of `cluster_data` is `HierarchicalTSClusters` (e.g. the output of `Extended_HC`) or a simple factor of cluster memberships, respectively.|
+|**k**|The number of clusters to cut dendrograms into. **NOTE** that this only applies when `cluster_type = "HC"`.|
+|**export_plots**|One of: `"none"`, `"png"`, or `"pdf"` (default). Specifies whether plots are exported, and the filetype.|
+|**export_results**|`TRUE/FALSE` logical. Should results be exported as a .CSV file?|
+|**export_path**|Character path to the directory where results (including plots) should be exported. Defaults to the working directory.|
+|**height**|The height of exported .PDF graphics (5 by default).|
+|**width**|The width of exported .PDF graphics (5 by default).|
+|**point_size**|The point size of exported .PDF graphics (10 by default).|
+|**dpi**|The resolution of exported .PNG plots (when `export_plots = "png"`), in Dots Per Inch (500 by default).|
 
 #### Details
 Please refer to the [Data Analysis Tools vignette]() for example usage and output of this and other functions.
 
 #### Values
+
 <br></br>
 ### The `DTW_alignment` function
 #### Usage
@@ -188,17 +190,17 @@ point_size=10, dpi=500, export_results=TRUE, export_path=getwd(), dtw_distance="
 |**y_offset**||
 |**x_label**||
 |**sample_freq**|The frequency with which to draw DTW lines between `query_data` and `ref_data` in output graphics. Defaults to `1` (a line is drawn for every available sample).|
-|**match_vis**||
+|**match_vis**|A number from 0 to 1 specifying the visibility of DTW lines connecting timeseries (0.8, i.e. 80% visibility, by default).|
 |**grang_order**|Numeric value of the lag order to use when testing for Granger causality between `query_data` and `ref_data`. See also `?grangertest`.|
 |**x_rounding_order**|Rounding order to use when deriving x-axis breaks for ggplot2 graphics. Defaults to `-1` (rounded to the nearest 10; see also `?round`.|
 |**y_rounding_order**|Rounding order to use when deriving y-axis breaks for ggplot2 graphics. Defaults to `-1`|
-|**export_plots**||
-|**width**||
-|**height**||
-|**point_size**||
-|**dpi**||
-|**export_results**||
-|**export_path**||
+|**export_plots**|One of: `"none"`, `"png"`, or `"pdf"` (default). Specifies whether plots are exported, and the filetype.|
+|**width**|The width of exported .PDF/.PNG plots (10 by default).|
+|**height**|The height of exported .PDF/.PNG plots (5 by default).|
+|**point_size**|The point size of exported .PDF/.PNG plots (10 by default).|
+|**dpi**|The resolution of exported .PNG plots (when `export_plots = "png"`), in Dots Per Inch (500 by default).|
+|**export_results**|`TRUE/FALSE` logical. Should results be exported as a .CSV file?|
+|**export_path**|Character path to the directory where results (including plots) should be exported. Defaults to the working directory.|
 |**dtw_distance**|**Currently not utilized**. Character value denoting the pointwise (local) distance to use for multivariate timeseries.|
 
 #### Details
