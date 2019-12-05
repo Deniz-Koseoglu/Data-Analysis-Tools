@@ -4,7 +4,7 @@ Extended_PCA <- function(data, vars, obs="default",
                          plot_cols, rank_vars=TRUE, add_opts=c(TRUE, FALSE, TRUE),
                          ind_groups=c("HC", "complete"), clust_k="auto", clust_dist="euclidean",
                          clust_which="none", ellipses=TRUE, pc_keep = 5,
-                         export_path=getwd(), export_res="all", height=10, width=10, point_size=12 
+                         export_path=getwd(), height=10, width=10, point_size=12 
 ) {
   
   #Install and load the required libraries 
@@ -79,7 +79,7 @@ Extended_PCA <- function(data, vars, obs="default",
     }
     all_obs <- c(pr_obs, sec_obs)
     
-  } else if(is.numeric(obs)) {
+  } else if(is.numeric(obs) & !is.list(obs)) {
     print("No secondary observations/individuals provided! Using only primary observations...")
     pr_obs <- obs
     sec_obs <- NULL
@@ -1302,13 +1302,13 @@ Overlay_Clusters <- function(data, cluster_data, cluster_labels, var_subset, var
     dev.off()
   }
   print(Plot_List)
-  return(Plot_Data)
+  return(Plot_List)
 }
 
 # 4) Align two time series from e.g. downcore records using DTW techniques
 DTW_alignment <- function(query_data, ref_data, query_title="Query", ref_title="Reference", query_subset=NULL, ref_subset=NULL, z_norm=list(TRUE, FALSE, FALSE), reinterp=FALSE,
                           x_var, step_pattern="symmetric2", window_type="sakoechiba", window_size=20, MVM_elasticity=50, RJ_step_settings=c(4, "d", FALSE), open_begin=FALSE, open_end=FALSE, x_align=TRUE,
-                          y_offset=NULL, x_label, y_labels_query=waiver(), y_labels_ref=waiver(), colours=brewer.pal(9, "Set1"), match_subset=NULL, match_min=NULL, sample_freq=1, match_vis=0.8, grang_order=3,
+                          y_offset=NULL, x_label=x_var, y_labels_query=waiver(), y_labels_ref=waiver(), colours=brewer.pal(9, "Set1"), match_subset=NULL, match_min=NULL, sample_freq=1, match_vis=0.8, grang_order=3,
                           x_rounding_order=-1, y_rounding_order=-1, export_plots="pdf", width=10, height=5, point_size=10,
                           dpi=500, export_results=TRUE, export_path=getwd(), dtw_distance="Euclidean") {
   
@@ -1783,6 +1783,6 @@ DTW_alignment <- function(query_data, ref_data, query_title="Query", ref_title="
                  match.indices = match_subset, top_match = as.numeric(DTW_DistRank[[i]][,10])) #, top_match = DTW_DistRank[[i]][,10]
   }
   
-  return(list(que_data, ref_data))
+  #return(list(que_data, ref_data))
   return(list(DTW_Data_List, alignment_list,GG_Plot_List))
 }
