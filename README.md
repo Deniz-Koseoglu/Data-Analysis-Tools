@@ -1,5 +1,5 @@
 # Data Analysis Tools
-A set of statistical workflows implemented in [RStudio](https://www.rstudio.com/products/rstudio/download/) (R v3.5.0) and mostly consisting of wrappers for dimensionality reduction (e.g. PCA), unsupervised classification (e.g. clustering), and other data analysis functions.
+A set of statistical workflows implemented in [RStudio](https://www.rstudio.com/products/rstudio/download/) ([R](https://cran.r-project.org/mirrors.html) v3.5.0) and mostly consisting of wrappers for dimensionality reduction (e.g. PCA), unsupervised classification (e.g. clustering), and other data analysis functions.
 
 Please send any suggestions for bug fixes and any other queries to deniz.koseoglu@plymouth.ac.uk.
 
