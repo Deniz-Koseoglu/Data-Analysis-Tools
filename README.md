@@ -3,7 +3,7 @@ A set of statistical workflows implemented in [RStudio](https://www.rstudio.com/
 
 Please send any suggestions for bug fixes and any other queries to deniz.koseoglu@plymouth.ac.uk.
 
-**NOTE**: Textual (.CSV) and visual (.PDF/.PNG) output produced by Data Analysis Tools v0.1, and toolkit functionality, are showcased in the accompanying [vignette]().
+**NOTE**: Textual (.CSV) and visual (.PDF/.PNG) output produced by Data Analysis Tools v0.1, and toolkit functionality, are showcased in the accompanying [vignette](https://github.com/Deniz-Koseoglu/Data-Analysis-Tools/blob/master/Example%20Use%20Vignette.md).
 
 Full functionality of the tools was confirmed only using Windows 10. Data Analysis Tools are provided as-is under MIT Licence terms (see LICENCE.md in the repository root).
 
@@ -19,8 +19,8 @@ R (≥3.5.0), [biotools](https://cran.r-project.org/web/packages/biotools/index.
 
 # Getting Started
 1. Make sure you have [R](https://cran.r-project.org/mirrors.html) and [RStudio](https://www.rstudio.com/products/rstudio/download/) installed.
-2. Download the [Data Analysis Tools]() source code and place it in a directory of your choice. Examples in this manual and the [vignette]() assume the .R file is located at **D:/Data Analysis Tools**.
-3. If you wish, you can also download various [example data files]() used in the [vignette]().
+2. Download the [Data Analysis Tools](https://github.com/Deniz-Koseoglu/Data-Analysis-Tools/blob/master/Data_Analysis_Tools_v01.R) source code and place it in a directory of your choice. Examples in this manual and the [vignette](https://github.com/Deniz-Koseoglu/Data-Analysis-Tools/blob/master/Example%20Use%20Vignette.md) assume the .R file is located at **D:/Data Analysis Tools**.
+3. If you wish, you can also download various [example data files](https://github.com/Deniz-Koseoglu/Data-Analysis-Tools/blob/master/DATools_EXAMPLE_DATA.zip) used in the [vignette](https://github.com/Deniz-Koseoglu/Data-Analysis-Tools/blob/master/Example%20Use%20Vignette.md).
 4. Create a new script in RStudio using **File -> New File -> R Script**.
 5. Source Data Analysis Tools using the command: 
 ```r 
@@ -61,7 +61,7 @@ Extended_PCA <- function(data, vars, obs="default", plot_grphcs=list(c("arrow", 
 |**point_size**|A numeric value of point size to use in exported .PDF graphics (12 by default).|
 
 #### Details
-Please refer to the [Data Analysis Tools vignette]() for example usage and output of this and other functions.
+Please refer to the [Data Analysis Tools vignette](https://github.com/Deniz-Koseoglu/Data-Analysis-Tools/blob/master/Example%20Use%20Vignette.md) for example usage and output of this and other functions.
 
 #### Values
 Returns a list of length 2, where the **first element** is an object of class `PCA` and contains comprehensive results of the analysis. The **second element** includes all plot objects produced by the function via `ggplot2`.
@@ -116,7 +116,7 @@ Extended_HC <- function(data, cluster_by="observations", var_subset, var_labels=
 |**dend_mar**|A numeric vector of length 2 providing the bottom (**first element**) and right (**second element**) margins for dendrograms drawn using base R graphics (rather than `ggplot2`).|
 
 #### Details
-Please refer to the [Data Analysis Tools vignette]() for example usage and output of this and other functions.
+Please refer to the [Data Analysis Tools vignette](https://github.com/Deniz-Koseoglu/Data-Analysis-Tools/blob/master/Example%20Use%20Vignette.md) for example usage and output of this and other functions.
 
 #### Values
 Analogously to `Extended_PCA`, the function returns a list of length 2, where the **first element** contains clustering results for each of chosen `agglomeration_methods`, and the **second element** contains graphical `ggplot2` output.
@@ -151,7 +151,7 @@ colours, facet_by="linkage method", cluster_type="arbitrary", k, export_plots="p
 |**dpi**|The resolution of exported .PNG plots (when `export_plots = "png"`), in Dots Per Inch (500 by default).|
 
 #### Details
-Please refer to the [Data Analysis Tools vignette]() for example usage and output of this and other functions.
+Please refer to the [Data Analysis Tools vignette](https://github.com/Deniz-Koseoglu/Data-Analysis-Tools/blob/master/Example%20Use%20Vignette.md) for example usage and output of this and other functions.
 
 #### Values
 Currently returns a list of `ggplot2` plots created.
@@ -204,7 +204,7 @@ point_size=10, dpi=500, export_results=TRUE, export_path=getwd(), dtw_distance="
 |**dtw_distance**|**Currently not utilized**. Character value denoting the pointwise (local) distance to use for multivariate timeseries.|
 
 #### Details
-Please refer to the [Data Analysis Tools vignette]() for example usage and output of this and other functions.
+Please refer to the [Data Analysis Tools vignette](https://github.com/Deniz-Koseoglu/Data-Analysis-Tools/blob/master/Example%20Use%20Vignette.md) for example usage and output of this and other functions.
 
 #### Values
 Returns a list of length 3. The **first element** contains a `data.frame` of results for each pair of time series specified in `query_subset` and `ref_subset`. These include row numbers of matched `ref_data` and `query_data` (first 2 columns), x-axis values (columns 3 and 4), y-axis values (columns 5 and 6), alignment pair-specific and cumulative costs (columns 7 and 8), and the number of steps taken for each alignment pair (final column). The **second element** contains `dtw` objects for each `query_subset` - `ref_subset` pair. Finally, the **third element** is a list of `ggplot2` plots produced (**NOTE** that plots using R base graphics are *not* included).
