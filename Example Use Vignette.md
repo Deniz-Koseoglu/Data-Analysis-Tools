@@ -107,5 +107,48 @@ In this instance, Ward's linkage AHC clustering effectively identified the incre
 <br></br>
 ### Example 3: DTW alignment of time series from two downcore records
 Differences in sedimentation rates contribute to the differences observed between depth-age profiles of downcore sedimentary records. Radiocarbon dating of carbonate deposited within ancient sediment is costly, time-consuming, and only possible where sufficient preserved material is available. Thus, even downcore records considered well-dated often have multi-centennial age resolution at maximum. However, where at least two cores from the same location are available, their age models may be merged by finding tie-points between the same measured quantity(ies) across a range of core depths (e.g. calcium and other trace metals); such tie-points often take the form of significantly similar shape-based features, such as maxima and minima. Thus, the depth (and, therefore, age) of one core may be inferred from another based on these similarities. Here, we will use `DTW_alignment` to identify tie-points from two XRF-measured calcium depth profiles obtained from equi-located sediment cores.
+
+Data is loaded and processed as follows:
+```r
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#EXAMPLE 3: DTW and alignment of two XRF Ca downcore records to find sensible tie points
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#Load data
+DTW_list <- lapply(list.files("D:/Data Analysis Tools", full.names = TRUE, pattern = "DTW.*\\.csv$"), data.table::fread, data.table = FALSE)
+
+DTW_Results <- DTW_alignment(query_data = DTW_list[[1]], 
+                             ref_data = DTW_list[[2]], 
+                             query_title = "GC08", 
+                             ref_title = "GS14", 
+                             query_subset = colnames(DTW_list[[1]])[-grep("Depth_cm", colnames(DTW_list[[1]]))], 
+                             ref_subset = colnames(DTW_list[[2]])[-grep("Depth_cm", colnames(DTW_list[[2]]))],
+                             z_norm = list(TRUE, FALSE, FALSE), 
+                             reinterp = FALSE,
+                             x_var = "Depth_cm",
+                             x_label = "Depth (cm)", 
+                             y_labels_query = gsub("_ppm", " (ppm)", colnames(DTW_list[[1]])[-grep("Depth_cm", colnames(DTW_list[[1]]))]),
+                             y_labels_ref = gsub("_ppm", " (ppm)", colnames(DTW_list[[2]])[-grep("Depth_cm", colnames(DTW_list[[1]]))]),
+                             step_pattern = "MVM", 
+                             window_type = "sakoechiba", 
+                             window_size = 500, 
+                             MVM_elasticity = 50, 
+                             RJ_step_settings = c(4, "d"), 
+                             open_begin = FALSE, 
+                             open_end = FALSE, 
+                             x_align = TRUE,
+                             y_offset = c(1.5, "new_breaks"),
+                             match_min = 20, 
+                             sample_freq = 1, 
+                             match_vis = 0.8, 
+                             grang_order = 3,
+                             x_rounding_order = -1, 
+                             y_rounding_order = -1,
+                             dtw_distance = "Euclidean",
+                             export_plots = "pdf", 
+                             export_path = "D:/Data Analysis Tools/Output/DTW_alignment")
+```
+Example output below shows two versions of DTW warping plots produced by `ggplot2` and R base graphics.
 ![Image10](https://i.ibb.co/6tL4ySf/DTW-Alignment-Plots-2019-12-04-20hr-58min-44sec-Page-05.png)
+In this `ggplot2` figure, the dotted green alignment lines connect the query (GC08; red) and reference (GS14; blue) time series. Solid black lines highlight the top 20 (in this case) alignments with the lowest local cost.
 ![Image11](https://i.ibb.co/ngmm4WC/DTW-Alignment-Plots-2019-12-04-20hr-58min-44sec-Page-10.png)
+This graph is analogous to the one exported by `ggplot2`, showing both the query and reference time series along the x- and y-plane, respectively. The warping path along with DTW alignment lines are shown by solid black and dotted green lines, respectively. Finally, top 20 lowest-cost alignments are highlighted by purple lines.
