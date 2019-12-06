@@ -63,12 +63,12 @@ AHC_Overlay <- Overlay_Clusters(data = AHC_data,
                                 x_var = "Age", 
                                 x_lab = "Age (cal kyr BP)", 
                                 colours = cols_solid, 
-                                facet_by = "linkage method", 
+                                facet_by = "variables", 
                                 cluster_type = "HC", 
                                 k = 3, 
                                 export_plots = "pdf",
                                 export_path = "D:/Data Analysis Tools/Output/Overlay_Clusters",
-                                width = 10,
+                                width = 5,
                                 point_size = 9)
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
