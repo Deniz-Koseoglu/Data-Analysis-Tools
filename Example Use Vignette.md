@@ -95,3 +95,15 @@ AHC_Overlay <- Overlay_Clusters(data = AHC_data,
                                 width = 5,
                                 point_size = 9)
 ```
+Example output below shows the AHC dendrogram output using `ggplot2` and Ward's linkage method:
+![Image6](https://i.ibb.co/c6672yF/HC-Clustering-by-Observations-2019-12-03-05hr-47min-30sec-Page-21.png)
+The label size appears to be too large to display all observations clearly! This can be adjusted, where necessary, via the `gg_lab_size` argument. Alternatively, `var_labels` may be set to `NULL` or `NA` to remove them entirely.
+A cophenetic Spearman correlation matrix between all utilized linkage methods is shown below. It is apparent that single linkage is most dissimilar from the others, while average and complete linkage are also dissimilar to the **ward.D** method.
+![Image8](https://i.ibb.co/JrMwskq/HC-Clustering-by-Observations-2019-12-03-05hr-47min-30sec-Page-23.png)
+The accompanying .CSV output files also include the results of Cluster Validity Indices (CVI) to determine a suitable number of clusters, as well as cluster memberships using each linkage method.
+Finally, the output of `Overlay_Clusters` using the results of `Extended_HC` yields the following plots of cluster memberships (the example shown uses Ward's linkage method) overlaid onto each of the four variables included in the dataset:
+![Image9](https://i.ibb.co/g9KjPdp/Cluster-Overlay-by-Variable-2019-12-05-19hr-46min-06sec-Page-4.png)
+In this instance, Ward's linkage AHC clustering effectively identified the increase in Variable_4, in particular. 
+<br></br>
+### Example 3: DTW alignment of time series from two downcore records
+Differences in sedimentation rates contribute to the differences observed between depth-age profiles of downcore sedimentary records. Radiocarbon dating of carbonate deposited within ancient sediment is costly, time-consuming, and only possible where sufficient preserved material is available. Thus, even downcore records considered well-dated often have multi-centennial age resolution at maximum. However, where at least two cores from the same location are available, their age models may be merged by finding tie-points between the same measured quantity(ies) across a range of core depths (e.g. calcium and other trace metals); such tie-points often take the form of significantly similar shape-based features, such as maxima and minima. Thus, the depth (and, therefore, age) of one core may be inferred from another based on these similarities. Here, we will use `DTW_alignment` to identify tie-points from two XRF-measured calcium depth profiles obtained from equi-located sediment cores.
