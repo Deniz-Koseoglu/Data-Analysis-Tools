@@ -1308,7 +1308,7 @@ Overlay_Clusters <- function(data, cluster_data, cluster_labels, var_subset, var
 # 4) Align two time series from e.g. downcore records using DTW techniques
 DTW_alignment <- function(query_data, ref_data, query_title="Query", ref_title="Reference", query_subset=NULL, ref_subset=NULL, z_norm=list(TRUE, FALSE, FALSE), reinterp=FALSE,
                           x_var, step_pattern="symmetric2", window_type="sakoechiba", window_size=20, MVM_elasticity=50, RJ_step_settings=c(4, "d", FALSE), open_begin=FALSE, open_end=FALSE, x_align=TRUE,
-                          y_offset=NULL, x_label=x_var, y_labels_query=waiver(), y_labels_ref=waiver(), colours=brewer.pal(9, "Set1"), match_subset=NULL, match_min=NULL, sample_freq=1, match_vis=0.8, grang_order=3,
+                          y_offset=0, x_label=x_var, y_labels_query=query_subset, y_labels_ref=ref_subset, colours=brewer.pal(9, "Set1"), match_subset=NULL, match_min=NULL, sample_freq=1, match_vis=0.8, grang_order=3,
                           x_rounding_order=-1, y_rounding_order=-1, export_plots="pdf", width=10, height=5, point_size=10,
                           dpi=500, export_results=TRUE, export_path=getwd(), dtw_distance="Euclidean") {
   
